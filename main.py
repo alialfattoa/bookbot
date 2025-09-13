@@ -1,9 +1,14 @@
-def get_book_text(filepath):
-    with open(filepath) as f:
-        file_contents = f.read()
-    return file_contents
+import sys
+from stats import get_book_text, num_words,count_charachters, print_report,list_sort
+
 
 def main():
-    print(get_book_text("/home/alial/bookbot/books/frankenstein.txt"))
+    if len(sys.argv)!=2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    filepath= sys.argv[1]
+    book_text = get_book_text(filepath)
+    word_count = num_words(book_text)
 
+    print_report("/home/alial/bookbot/books/frankenstein.txt",book_text, word_count, count_charachters(book_text))
 main()
